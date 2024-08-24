@@ -7,7 +7,7 @@ Route::get('/', function () {
     return view('home', [
         'name' => 'iPhone',
         'image' => 'banner-image1.png',
-        'discription' => 'lorem spam ergarf ergstrg hsreg ser'
+        'description' => 'lorem spam ergarf ergstrg hsreg ser'
     ]);
 });
 
