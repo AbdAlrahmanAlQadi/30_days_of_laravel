@@ -14,33 +14,33 @@
             <div>
                 <span
                     class="
-  bg-primary
-  rounded
-  inline-block
-  text-center
-  py-1
-  px-4
-  text-xs
-  leading-loose
-  font-semibold
-  text-white
-  mb-5
-  ">
+                        bg-primary
+                        rounded
+                        inline-block
+                        text-center
+                        py-1
+                        px-4
+                        text-xs
+                        leading-loose
+                        font-semibold
+                        text-white
+                        mb-5
+                        ">
                     {{ $blog['date'] }}
                 </span>
                 <h3>
                     <a href="javascript:void(0)"
                         class="
-     font-semibold
-     text-xl
-     sm:text-2xl
-     lg:text-xl
-     xl:text-2xl
-     mb-4
-     inline-block
-     text-dark
-     hover:text-primary
-     ">
+                        font-semibold
+                        text-xl
+                        sm:text-2xl
+                        lg:text-xl
+                        xl:text-2xl
+                        mb-4
+                        inline-block
+                        text-dark
+                        hover:text-primary
+                        ">
                         {{ $blog['name'] }}
                     </a>
                 </h3>
