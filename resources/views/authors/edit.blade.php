@@ -22,7 +22,7 @@
                 <textarea name="bio" id="bio" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ $author->bio }}</textarea>
             </div>
 
-            <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700">Update Author</button>
+            <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Update Author</button>
         </form>
     </div>
 </x-layout>

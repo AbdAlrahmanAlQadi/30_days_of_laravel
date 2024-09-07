@@ -16,7 +16,7 @@
                 @enderror
             </div>
             <div class="flex justify-end">
-                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Update Category</button>
+                <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Update Category</button>
             </div>
         </form>
     </div>
