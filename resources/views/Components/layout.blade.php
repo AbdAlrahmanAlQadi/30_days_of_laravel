@@ -23,6 +23,8 @@
                             <x-nav-link href="/jobs" :active="request()->is('jobs')">Jobs</x-nav-link>
                             <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
                             <x-nav-link href="/blogs" :active="request()->is('blogs')">Blogs</x-nav-link>
+                            <x-nav-link href="/categories" :active="request()->is('categories')">Categories</x-nav-link>
+                            <x-nav-link href="/authors" :active="request()->is('authors')">Authors</x-nav-link>
                             <x-nav-link href="/about" :active="request()->is('about')">About</x-nav-link>
                         </div>
                     </div>
@@ -123,6 +125,11 @@
 
     <main>
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            @if (session('success'))
+                <div class="bg-green-500 text-white p-4 rounded mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
             {{ $slot }}
         </div>
     </main>

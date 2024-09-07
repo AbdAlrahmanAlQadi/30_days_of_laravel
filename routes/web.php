@@ -2,15 +2,25 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\AuthorController;
 
-Route::get('/', [BlogController::class, 'home']);
 
-Route::get('/jobs', [BlogController::class, 'jobs']);
-Route::get('/jobs/{id}', [BlogController::class, 'showJob']);
 
-Route::get('/blogs', [BlogController::class, 'blogs']);
-Route::get('/blogs/{id}', [BlogController::class, 'showBlog']);
+Route::get('/', [PagesController::class, 'home']);
 
-Route::get('/about', [BlogController::class, 'about']);
+Route::get('/jobs', [PagesController::class, 'jobs']);
+Route::get('/jobs/{id}', [PagesController::class, 'showJob']);
 
-Route::get('/contact', [BlogController::class, 'contact']);
+Route::get('/about', [PagesController::class, 'about']);
+
+Route::get('/contact', [PagesController::class, 'contact']);
+
+Route::resource('blogs', BlogController::class);
+
+Route::resource('categories', CategoryController::class);
+
+Route::resource('authors', AuthorController::class);
+
+
