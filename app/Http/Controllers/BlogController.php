@@ -17,17 +17,17 @@ class BlogController extends Controller
         $authorId = $request->input('author');
         $authors = Author::all();
 
+        $query = Blog::query();
+
         if ($categoryId) {
-            $blogs = Blog::where('category_id', $categoryId)->get();
-        } else {
-            $blogs = Blog::all();
+            $query->where('category_id', $categoryId);
         }
 
         if ($authorId) {
-            $blogs = Blog::where('author_id', $authorId)->get();
-        } else {
-            $blogs = Blog::all();
+            $query->where('author_id', $authorId);
         }
+
+        $blogs = $query->paginate(6);
 
         return view('blogs.index', compact('blogs', 'categories', 'authors'));
     }
@@ -40,32 +40,33 @@ class BlogController extends Controller
     }
 
     public function store(Request $request)
-{
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'description' => 'required|string',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'category_id' => 'required|exists:categories,id',
-        'author_id' => 'required|exists:authors,id',
-    ]);
-
-    $imageName = time() . '.' . $request->image->extension();
-    $request->image->move(public_path('storage/images'), $imageName);
-
-    Blog::create([
-        'title' => $request->title,
-        'description' => $request->description,
-        'image' => $imageName,
-        'category_id' => $request->category_id,
-        'author_id' => $request->author_id,
-    ]);
-
-    return redirect()->route('blogs.index')->with('success', 'Blog created successfully!');
-}
-
-    public function show(string $id)
     {
-        $blog = Blog::find($id);
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'category_id' => 'required|exists:categories,id',
+            'author_id' => 'required|exists:authors,id',
+        ]);
+
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('storage/images'), $imageName);
+
+        Blog::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'image' => $imageName,
+            'category_id' => $request->category_id,
+            'author_id' => $request->author_id,
+        ]);
+
+        return redirect()->route('blogs.index')->with('success', 'Blog created successfully!');
+    }
+
+    public function show(string $slug)
+    {
+        $blog = Blog::where('slug', $slug)->with('category', 'author')->first();
+
         if (!$blog) {
             return abort(404);
         }
@@ -76,7 +77,7 @@ class BlogController extends Controller
     {
         $blog = Blog::findOrFail($id);
         $categories = Category::all();
-        $categories = Author::all();
+        $authors = Author::all();
         return view('blogs.edit', compact('blog', 'categories', 'authors'));
     }
 

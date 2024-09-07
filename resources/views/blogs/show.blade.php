@@ -31,6 +31,12 @@
                         ">
                         {{ $blog['created_at'] }}
                     </span>
+                    <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Category :
+                        {{ $blog->category ? $blog->category->name : 'Uncategorized' }}
+                    </div>
+                    <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold"> Author :
+                        {{ $blog->author ? $blog->author->name : 'Uncategorized' }}
+                    </div>
                     <h3>
                         <a href="javascript:void(0)"
                             class="

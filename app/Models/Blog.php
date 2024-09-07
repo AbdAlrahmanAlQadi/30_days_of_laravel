@@ -2,13 +2,28 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Blog extends Model
 {
+
+    use HasFactory;
+    use sluggable;
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
+
     protected $table = 'blogs';
-    protected $fillable = ['title', 'description', 'image', 'category_id', 'author_id'];
+    protected $fillable = ['title', 'description', 'image', 'category_id', 'author_id', 'slug'];
 
     protected $casts = [
         'created_at' => 'datetime',
